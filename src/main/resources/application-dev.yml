@@ -1,0 +1,37 @@
+### 服务端口配置 ###
+server:
+  port: 8080
+
+###################
+#                 #
+#  数据源的相关配置  #
+#                 #
+###################
+spring:
+  datasource:    # 数据源的相关配置
+    url: jdbc:mysql://localhost:3306/xxx?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: name
+    password: password
+#############################################################
+#
+#  整合redis，在spring节点下，支持三种配置模式
+#  1. 单机模式
+#  2. 哨兵模式
+#  3. 集群模式
+#############################################################
+  redis:
+    #单机单实例
+    database: 1
+    host: localhost
+    port: 6379
+    #Redis哨兵模式
+    #    database: 1
+    #    password: "000000"
+    #    sentinel:
+    #      master: redis-master
+    #      nodes: 172.16.192.189:26379,172.16.192.193:26379,172.16.192.194:26379
+    #Redis集群模式
+#    password: "000000"
+#    cluster:
+#      nodes: 172.16.192.189:6379,172.16.192.193:6379,172.16.192.194:6379
+############################################################

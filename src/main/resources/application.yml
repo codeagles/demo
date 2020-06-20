@@ -1,1 +1,30 @@
+### 多环境配置 |dev|prod|test
+spring:
+  profiles:
+    active: dev
 
+  ################
+  #
+  # Hikari数据源，通用配置，放在application.yml中，
+  # 数据库连接按照每个配置文件自定义即可
+  #
+  #################
+  datasource:                                         # 数据源的相关配置
+    type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
+    driver-class-name: com.mysql.jdbc.Driver          # mysql驱动
+    # 此处省略数据库连接，将数据库连接配置移动到需要的配置文件中
+    hikari:
+      connection-timeout: 30000       # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+      minimum-idle: 5                 # 最小连接数
+      maximum-pool-size: 20           # 最大连接数
+      auto-commit: true               # 自动提交
+      idle-timeout: 600000            # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+      pool-name: DateSourceHikariCP     # 连接池名字
+      max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+      connection-test-query: SELECT 1
+
+    ### 文件上传参数配置 ###
+    servlet:
+      multipart:
+        max-file-size: 512000 #文件上传大小 500KB
+        max-request-size: 512000 #请求大小限制 500KB
